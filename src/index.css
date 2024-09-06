@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  max-width: 1920px;
+  background-color: #ececec;
+  /* font-family: "DM Sans", sans-serif; */
+}
+
+main {
+  max-width: 80%;
+  margin: 0 auto;
+}
