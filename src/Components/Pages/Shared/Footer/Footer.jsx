@@ -10,7 +10,7 @@ const Footer = () => {
                     <Link className="text-3xl font-extrabold text-white"><span className="text-white">Care</span>Loom</Link>
                 </div>
                 <p>
-                    Copyright © 2022 BRIX Templates
+                    Copyright © 2022 CareLoom
                     <br />
                     |  All Rights Reserved
                 </p>
