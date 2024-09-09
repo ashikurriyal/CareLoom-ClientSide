@@ -1,8 +1,14 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 
 
 const Login = () => {
+
+    const {signIn, signInWithGoogle} = useContext(AuthContext)
+    const navigate = useNavigate();
 
     const handleLogin = event => {
         event.preventDefault();
@@ -11,11 +17,42 @@ const Login = () => {
         const password = form.password.value;
 
         console.log(email, password)
+
+        signIn(email, password)
+        .then(result => {
+            Swal.fire({
+                title: "Login Successful!",
+                text: "Welcome Back to Care Loom!",
+                icon: "success"
+            });
+            const user = result.user;
+            console.log(user)
+            navigate(location?.state ? location.state : '/')
+
+            event.target.reset
+        })
+        .catch(error => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+
+            })
+            console.log(error)
+        })
     }
 
+    //Continue with google handle
     const handleGoogleSignIn = () => {
+        signInWithGoogle()
+            .then(result => {
+                console.log(result.user)
+                navigate(location?.state ? location.state : "/")
+            })
 
+            .catch(error => console.error(error))
     }
+
     return (
         <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-base-200 text-gray-800 container mx-auto border-2 border-primary-cyan">
             <h1 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-primary-cyan p-2">Login</h1>

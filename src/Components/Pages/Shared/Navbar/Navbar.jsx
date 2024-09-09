@@ -56,8 +56,10 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end lg:gap-5">
-                <button className="rounded-2xl border-2 border-primary-cyan  text-primary-cyan text-xl font-bold md:px-10 md:py-3">Sing Up</button>
+                {/* <button className="rounded-2xl border-2 border-primary-cyan  text-primary-cyan text-xl font-bold md:px-10 md:py-3">Sing Up</button> */}
+                <Link to='/login'>
                 <button className="rounded-2xl bg-primary-cyan text-white text-xl font-bold md:px-10 md:py-3">Log In</button>
+                </Link>               
             </div>
         </div>
     );
