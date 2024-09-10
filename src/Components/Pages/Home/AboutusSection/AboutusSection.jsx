@@ -3,17 +3,26 @@ import aboutusimg2 from "../../../../assets/Images/aboutus/aboutus2.webp";
 
 const AboutusSection = () => {
   return (
-    <div className="mt-24 container mx-auto rounded-2xl">
-      <div className="flex p- flex-col lg:flex-row gap-12">
+    <div className="bg-[#ececec] mt-24 container mx-auto rounded-2xl">
+      <div className="flex flex-col lg:flex-row gap-12 p-12">
         <div className="lg:w-1/2 relative">
-          <img
-            src={aboutusimg1}
-            className="w-3/4 rounded-lg shadow-2xl border-white border-8"
-          />
-          <img
-            src={aboutusimg2}
-            className="w-2/4 rounded-lg shadow-2xl border-white border-8 right-24 top-[200px] absolute"
-          />
+          <div className="" >
+            <img
+              src={aboutusimg1}
+              className="w-3/4 rounded-lg shadow-2xl border-white border-8"
+            />
+          </div>
+
+          <div
+            data-aos="fade-down"
+            data-aos-easing="linear"
+            data-aos-duration="1500"
+          >
+            <img
+              src={aboutusimg2}
+              className="w-2/4 rounded-lg shadow-2xl border-white border-8 right-24 top-[200px] absolute"
+            />
+          </div>
         </div>
         <div className="lg:w-1/2 space-y-5">
           {/* <h3 className="text-3xl text-yellow-green font-bold">About Us</h3> */}

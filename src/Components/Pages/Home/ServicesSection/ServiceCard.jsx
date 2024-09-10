@@ -2,7 +2,9 @@
 
 const ServiceCard = ({ image, title, description }) => {
     return (
-        <div className='max-w-96 bg-white p-6 rounded-2xl'>
+        <div className='max-w-96 bg-[#ececec] p-6 rounded-2xl' data-aos="fade-down"
+        data-aos-easing="linear"
+        data-aos-duration="1500">
             <div className='flex justify-center'>
                 <img src={image} alt={title} className='w-[345px] h-[220px] rounded-xl' />
             </div>

@@ -3,7 +3,7 @@
 const MembersCard = ({ member }) => {
   const { name, specialist, description, image } = member;
   return (
-    <div className="w-96 border-2 rounded-3xl text-center flex items-center flex-col p-8 bg-white">
+    <div className="w-96 border-2 rounded-3xl text-center flex items-center flex-col p-8 bg-[#ececec]">
       <img className="w-40 h-40 rounded-full" src={image} alt="" />
       <div className="flex flex-col gap-2 mt-10">
         <h1 className="font-bold text-2xl text-primary-cyan">{name}</h1>
