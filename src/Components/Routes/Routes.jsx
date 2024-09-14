@@ -7,6 +7,7 @@ import ErrorPage from "../Pages/Shared/ErrorPage/ErrorPage";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import ServicesPage from "../Pages/ServicesPage/ServicesPage";
+import ContactUs from "../Pages/ContactUs/ContactUs";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
         {
           path: '/services',
           element: <ServicesPage></ServicesPage>
+        },
+        {
+          path: '/contactus',
+          element: <ContactUs></ContactUs>
         }
     ]
   },
