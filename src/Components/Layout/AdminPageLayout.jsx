@@ -3,7 +3,7 @@ import Navbar from "../Pages/Shared/Navbar/Navbar";
 import Footer from "../Pages/Shared/Footer/Footer";
 
 
-const ServicesPageLayout = () => {
+const AdminPageLayout = () => {
     return (
         <div>
             <Navbar></Navbar>
@@ -15,4 +15,4 @@ const ServicesPageLayout = () => {
     );
 };
 
-export default ServicesPageLayout;
+export default AdminPageLayout;

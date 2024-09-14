@@ -24,7 +24,7 @@ const Register = () => {
     createUser(email, password)
       .then(() => {
         // console.log(res);
-        axiosPublic.post("/user", registerUser)
+        axiosPublic.post("/users", registerUser)
         .then((res) => {
           if (res.data.insertedId) {
             Swal.fire({
