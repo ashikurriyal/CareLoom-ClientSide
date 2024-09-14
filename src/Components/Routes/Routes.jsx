@@ -6,6 +6,7 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import ServicesPage from "../Pages/ServicesPage/ServicesPage";
 import ContactUs from "../Pages/ContactUs/ContactUs";
+import AdminPageLayout from "../Layout/AdminPageLayout";
 
 
 
@@ -37,6 +38,17 @@ const router = createBrowserRouter([
         }
     ]
   },
+
+  {
+    path: '/adminDashboard',
+    element: <AdminPageLayout></AdminPageLayout>,
+    children: [
+      {
+        path:'/adminDashboard',
+        element: <div><h1>Hello</h1></div>,
+      }
+    ]
+  }
 ]);
 
 export default router;

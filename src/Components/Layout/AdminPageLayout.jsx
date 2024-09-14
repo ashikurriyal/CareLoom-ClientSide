@@ -1,16 +1,15 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../Pages/Shared/Navbar/Navbar";
-import Footer from "../Pages/Shared/Footer/Footer";
-
-
+import AdminDashboard from "../Pages/Admin/AdminDashboard";
 const AdminPageLayout = () => {
     return (
-        <div>
-            <Navbar></Navbar>
-            <div>
+        <div className="grid grid-cols-12">
+            <div className="col-span-3 h-screen">
+                <AdminDashboard></AdminDashboard>
+            </div>
+            
+            <div className="col-span-9 bg-yellow-300">
                 <Outlet></Outlet>
             </div>
-            <Footer></Footer>
         </div>
     );
 };
