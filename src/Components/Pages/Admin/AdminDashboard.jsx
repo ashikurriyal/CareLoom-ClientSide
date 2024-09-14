@@ -1,7 +1,7 @@
 const AdminDashboard = () => {
   return (
     <div>
-      <aside className="flex flex-col h-screen px-5 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
+      <aside className="flex flex-col min-h-screen px-5 py-3 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
         <a href="#">
           <img
             className="w-auto h-7"

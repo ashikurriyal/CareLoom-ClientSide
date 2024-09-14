@@ -7,6 +7,7 @@ import Register from "../Pages/Register/Register";
 import ServicesPage from "../Pages/ServicesPage/ServicesPage";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import AdminPageLayout from "../Layout/AdminPageLayout";
+import AdminWelcome from "../Pages/Admin/AdminWelcome";
 
 
 
@@ -45,7 +46,7 @@ const router = createBrowserRouter([
     children: [
       {
         path:'/adminDashboard',
-        element: <div><h1>Hello</h1></div>,
+        element: <AdminWelcome></AdminWelcome>,
       }
     ]
   }
