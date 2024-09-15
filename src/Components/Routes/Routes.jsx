@@ -7,8 +7,11 @@ import Register from "../Pages/Register/Register";
 import ServicesPage from "../Pages/ServicesPage/ServicesPage";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import AdminPageLayout from "../Layout/AdminPageLayout";
-import AdminWelcome from "../Pages/Admin/AdminWelcome";
+// import AdminWelcome from "../Pages/Admin/AdminWelcome";
 import CareGiverApplyForm from "../Pages/CaregiverApply/CareGiverApplyForm";
+// import CareGiverReq from "../Pages/Admin/CareGiverReq";
+// import AdminRoute from "./AdminRoute";
+import CareGiverReq from "../Pages/Admin/CareGiverReq";
 
 
 
@@ -47,14 +50,23 @@ const router = createBrowserRouter([
 
   {
     path: '/adminDashboard',
+    
     element: <AdminPageLayout></AdminPageLayout>,
     children: [
       {
-        path:'/adminDashboard',
-        element: <AdminWelcome></AdminWelcome>,
+        path: '/adminDashboard', 
+        element: <CareGiverReq></CareGiverReq>,
+        // element: <AdminRoute><AdminWelcome></AdminWelcome></AdminRoute>,
       }
+      
     ]
   }
 ]);
 
 export default router;
+
+// ,
+      // {
+      //   path: '/careGiverReq', 
+      //   element: <AdminRoute><CareGiverReq></CareGiverReq></AdminRoute>
+      // }

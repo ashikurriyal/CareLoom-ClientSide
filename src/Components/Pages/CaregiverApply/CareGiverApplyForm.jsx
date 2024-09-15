@@ -5,28 +5,39 @@ import Swal from "sweetalert2";
 
 const CareGiverApplyForm = () => {
   const collectUser = useUser();
-  const axiosSecure = useAxiosSecure()
-  console.log(collectUser?.name, collectUser?.email);
-
-  
+  const axiosSecure = useAxiosSecure();
+  //   console.log(collectUser);
 
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
     try {
-        const applyCareGiver = {careGiverName: collectUser?.name, careGiverEmail: collectUser?.email, role: 'CareGiver', status: 'pending', expertise: data.expertise};
+      const applyCareGiver = {
+        careGiverName: collectUser?.name,
+        careGiverEmail: collectUser?.email,
+        role: "CareGiver",
+        status: "pending",
+        expertise: data.expertise,
+        uid: collectUser?._id,
+      };
 
-        const result = await axiosSecure.post('/applyCareGiver', applyCareGiver)
-        if (result.data.insertedId) {
-            Swal.fire({
-                // position: "top-end",
-                icon: "success",
-                title: "Property Added Successfully",
-                showConfirmButton: false,
-                timer: 1500
-            });
-        }
+      const result = await axiosSecure.post(
+        "/careGiverRequest",
+        applyCareGiver
+      );
+      if (result.data.insertedId) {
+        Swal.fire({
+          icon: "success",
+          title: "Caregiver Request Submitted Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    //   console.log(applyCareGiver);
     } catch (error) {
-        console.error('Error uploading image:', error.response ? error.response.data : error.message);
+      console.error(
+        "Error uploading image:",
+        error.response ? error.response.data : error.message
+      );
     }
   };
   return (
@@ -116,7 +127,8 @@ const CareGiverApplyForm = () => {
                 type="email"
                 id="careGiverEmail"
                 className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                placeholder={collectUser?.email} disabled
+                placeholder={collectUser?.email}
+                disabled
               />
             </div>
             <div className="relative flex items-center mt-4">
@@ -141,7 +153,8 @@ const CareGiverApplyForm = () => {
                 type="text"
                 id="role"
                 className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                placeholder="CareGiver" disabled
+                placeholder="CareGiver"
+                disabled
               />
             </div>
             {/* <div className="relative flex items-center mt-4">
