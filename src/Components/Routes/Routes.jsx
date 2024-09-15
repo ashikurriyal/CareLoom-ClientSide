@@ -8,6 +8,7 @@ import ServicesPage from "../Pages/ServicesPage/ServicesPage";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import AdminPageLayout from "../Layout/AdminPageLayout";
 import AdminWelcome from "../Pages/Admin/AdminWelcome";
+import CareGiverApplyForm from "../Pages/CaregiverApply/CareGiverApplyForm";
 
 
 
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
         {
           path: '/contactus',
           element: <ContactUs></ContactUs>
+        },
+        {
+          path: '/careGiverApplyForm',
+          element: <CareGiverApplyForm></CareGiverApplyForm>
         }
     ]
   },

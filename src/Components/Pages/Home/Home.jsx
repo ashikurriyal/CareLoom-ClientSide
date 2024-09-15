@@ -5,6 +5,7 @@ import Testimonials from "./Testimonials/Testimonials";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useEffect } from "react";
+import CaregiverApply from "../CaregiverApply/CaregiverApply";
 
 const Home = () => {
   const { user } = useAuth();
@@ -25,6 +26,7 @@ const Home = () => {
   return (
     <div>
       <AboutusSection></AboutusSection>
+      <CaregiverApply></CaregiverApply>
       <ServiecesSection></ServiecesSection>
       <TeamMembers></TeamMembers>
       <Testimonials></Testimonials>
