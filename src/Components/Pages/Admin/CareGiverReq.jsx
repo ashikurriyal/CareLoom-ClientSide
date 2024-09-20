@@ -33,10 +33,10 @@ const CareGiverReq = () => {
                         className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                       >
                         <div className="flex items-center gap-x-3">
-                          <input
+                          {/* <input
                             type="checkbox"
                             className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
-                          />
+                          /> */}
                           <span>Name</span>
                         </div>
                       </th>
@@ -101,12 +101,12 @@ const CareGiverReq = () => {
                       >
                         Email address
                       </th>
-                      <th
+                      {/* <th
                         scope="col"
                         className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                       >
                         Teams
-                      </th>
+                      </th> */}
                       <th scope="col" className="relative py-3.5 px-4">
                         <span className="sr-only">Edit</span>
                       </th>
@@ -118,10 +118,10 @@ const CareGiverReq = () => {
                         <tr>
                           <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                             <div className="inline-flex items-center gap-x-3">
-                              <input
+                              {/* <input
                                 type="checkbox"
                                 className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
-                              />
+                              /> */}
                               <div className="flex items-center gap-x-2">
                                 <img
                                   className="object-cover w-10 h-10 rounded-full"
@@ -143,7 +143,7 @@ const CareGiverReq = () => {
                             <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
                               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
                               <h2 className="text-sm font-normal text-emerald-500">
-                                Active
+                                {req.status}
                               </h2>
                             </div>
                           </td>
@@ -155,14 +155,12 @@ const CareGiverReq = () => {
                           </td>
                           <td className="px-4 py-4 text-sm whitespace-nowrap">
                             <div className="flex items-center gap-x-2">
-                              <p className="px-3 py-1 text-xs text-indigo-500 rounded-full dark:bg-gray-800 bg-indigo-100/60">
-                                Design
+                              <p className="px-3 py-1 text-xs text-green-500 rounded-full dark:bg-gray-800 bg-green-100/60">
+                                Accept
                               </p>
-                              <p className="px-3 py-1 text-xs text-blue-500 rounded-full dark:bg-gray-800 bg-blue-100/60">
-                                Product
-                              </p>
+                              
                               <p className="px-3 py-1 text-xs text-pink-500 rounded-full dark:bg-gray-800 bg-pink-100/60">
-                                Marketing
+                                Reject
                               </p>
                             </div>
                           </td>
