@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        "primary-cyan" : "#006494",
+        "primary-cyan" : "#2463eb",
         "yellow-green" : "#6EAB36",
 
       }

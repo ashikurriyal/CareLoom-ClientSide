@@ -8,7 +8,7 @@ import ServicesPage from "../Pages/ServicesPage/ServicesPage";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import AdminPageLayout from "../Layout/AdminPageLayout";
 // import AdminWelcome from "../Pages/Admin/AdminWelcome";
-import CareGiverApplyForm from "../Pages/CaregiverApply/CareGiverApplyForm";
+import CareGiverApplyForm from "../Pages/Home/CaregiverApply/CareGiverApplyForm";
 // import CareGiverReq from "../Pages/Admin/CareGiverReq";
 // import AdminRoute from "./AdminRoute";
 import CareGiverReq from "../Pages/Admin/CareGiverReq";

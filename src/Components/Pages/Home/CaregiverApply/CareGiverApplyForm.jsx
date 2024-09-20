@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
-import useUser from "../../Hooks/useUser";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useUser from "../../../Hooks/useUser";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 
 const CareGiverApplyForm = () => {
@@ -43,12 +43,12 @@ const CareGiverApplyForm = () => {
   return (
     <div>
       <section className="bg-white dark:bg-gray-900">
-        <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
+        <div className="container flex items-center justify-center px-6 mx-auto">
           <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-md">
             <div className="flex items-center justify-center mt-6">
               <a
                 href="#"
-                className="w-2/3 pb-4 font-semibold text-center text-gray-800 capitalize border-b-2 border-primary-cyan dark:border-primary-cyan dark:text-white text-3xl"
+                className="w-2/3 pb-4 font-semibold text-center text-blue-500 capitalize border-b-2 border-primary-cyan dark:border-primary-cyan dark:text-white text-3xl"
               >
                 Apply as CareGiver
               </a>
@@ -211,7 +211,7 @@ const CareGiverApplyForm = () => {
             </div>
 
             <div className="mt-6">
-              <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+              <button className="w-full px-6 py-3 text-xl font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                 Apply
               </button>
             </div>
