@@ -6,7 +6,7 @@ const Headings = ({ mainText, subText }) => {
         <div className='space-y-4'>
             <div>
                 {
-                    mainText && <h1 className='text-center text-4xl font-bold text-primary-cyan mt-8 md:mt-32'>{mainText}</h1>
+                    mainText && <h1 className='text-center text-5xl font-bold text-primary-cyan mt-8 md:mt-32'>{mainText}</h1>
                 }
             </div>
             <div>
