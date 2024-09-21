@@ -1,17 +1,22 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import useUser from "../../../Hooks/useUser";
 
 const Navbar = () => {
   //logout
   const { user, logOut } = useContext(AuthContext);
+
+  const collectUser = useUser();
+  console.log(collectUser);
+
+  const location = useLocation();
 
   const handleLogOut = () => {
     logOut()
       .then(() => console.log("user logged out successfully"))
       .catch((error) => console.error(error.message));
   };
-
 
   //Dark Mode
   const { theme, setTheme } = localStorage.getItem("theme") || "light";
@@ -36,8 +41,8 @@ const Navbar = () => {
     { title: "Home", path: "/" },
     { title: "Services", path: "/services" },
     { title: "Contact us", path: "/contactus" },
-    { title: "Help", path: "" },
-    { title: "Blogs", path: "" },
+    // { title: "Help", path: "" },
+    // { title: "Blogs", path: "" },
   ];
 
   return (
@@ -67,7 +72,11 @@ const Navbar = () => {
             {links.map((link) => (
               <a key={link.path}>
                 <Link
-                  className="hover:bg-gradient-to-l from-yellow-green to-primary-cyan hover:text-lg hover:font-semibold hover:border-b-2 ml-3 "
+                  className={`hover:bg-gradient-to-l from-yellow-green to-primary-cyan hover:text-lg hover:font-semibold hover:border-b-2 ml-3 ${
+                    location.pathname === link.path
+                      ? "border-b-4 border-blue-500"
+                      : ""
+                  }`}
                   to={link.path}
                 >
                   {link.title}
@@ -88,7 +97,11 @@ const Navbar = () => {
           {links.map((link) => (
             <a key={link.path} className="text-xl">
               <Link
-                className="ml-3 text-black hover:text-xl hover:font-semibold hover:border-b-2 hover:bg-gradient-to-r from-primary-cyan to-yellow-green hover:inline-block hover:text-transparent hover:bg-clip-text"
+                className={`ml-3 text-black md:text-xl font-medium ${
+                  location.pathname === link.path
+                    ? "border-b-4 border-blue-500"
+                    : ""
+                }`}
                 to={link.path}
               >
                 {link.title}
@@ -191,10 +204,10 @@ const Navbar = () => {
                   alt="avatar"
                 />
                 <h4 className="mx-2 mt-2 font-medium text-blue-600 dark:text-gray-200">
-                  {user?.displayName}
+                  {collectUser?.name}
                 </h4>
                 <p className="mx-2 mt-1 text-sm font-medium text-blue-600 dark:text-gray-400">
-                  {user?.email}
+                  {collectUser?.email}
                 </p>
               </li>
               <li>

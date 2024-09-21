@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 const CareGiverApplyForm = () => {
   const collectUser = useUser();
   const axiosSecure = useAxiosSecure();
-  //   console.log(collectUser);
+    // console.log(collectUser);
 
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
