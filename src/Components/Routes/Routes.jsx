@@ -65,7 +65,6 @@ const router = createBrowserRouter([
       {
         path: '/adminDashboard/careGiverReq', 
         element: <CareGiverReq></CareGiverReq>,
-        // element: <AdminRoute><AdminWelcome></AdminWelcome></AdminRoute>,
       },
       {
         path: '/adminDashboard/users',
@@ -77,9 +76,3 @@ const router = createBrowserRouter([
 ]);
 
 export default router;
-
-// ,
-      // {
-      //   path: '/careGiverReq', 
-      //   element: <AdminRoute><CareGiverReq></CareGiverReq></AdminRoute>
-      // }

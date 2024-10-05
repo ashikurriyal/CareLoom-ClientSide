@@ -24,12 +24,43 @@ const CareGiverReq = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure
-          .patch(`/users/${item._id}`, { status: "verified" }) // Send the status in the request body
+          .patch(`/allCareGiverApplyReq/${item._id}`, { status: "verified" }) // Corrected URL
           .then((res) => {
             if (res.data.modifiedCount > 0) {
               Swal.fire({
                 title: "Successful",
                 text: "CareGiver Verified Successfully",
+                icon: "success",
+              });
+              refetch(); // Refetch the data after success
+            }
+          })
+          .catch((error) => {
+            console.error("Verification error:", error);
+          });
+      }
+    });
+  };
+
+  //reject property
+  const handleReject = (item) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Reject this CareGiver!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Reject This CareGiver",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .patch(`/allCareGiverApplyReq/${item._id}`, { status: "rejected" }) // Send the status in the request body
+          .then((res) => {
+            if (res.data.modifiedCount > 0) {
+              Swal.fire({
+                title: "Successful",
+                text: "CareGiver is Rejected",
                 icon: "success",
               });
               refetch();
@@ -39,38 +70,42 @@ const CareGiverReq = () => {
     });
   };
 
-      //reject property
-      const handleReject = item => {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "Reject this CareGiver!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Reject This CareGiver"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                axiosSecure.patch(`/users/${item._id}`, { status: 'rejected' }) // Send the status in the request body
-                    .then(res => {
-                        if (res.data.modifiedCount > 0) {
-                            Swal.fire({
-                                title: "Successful",
-                                text: "CareGiver is Rejected",
-                                icon: "success"
-                            });
-                            refetch();
-                        }
-                    });
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .delete(`/allCareGiverApplyReq/${id}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              Swal.fire(
+                "Deleted!",
+                "Caregiver request has been deleted.",
+                "success"
+              );
+              refetch(); // Refetch the data to update the list
             }
-        });
-    }
+          })
+          .catch((err) => {
+            console.error("Error deleting caregiver request:", err);
+          });
+      }
+    });
+  };
+
   return (
     <div>
       <section className="container px-4 mx-auto">
         <div className="flex items-center gap-x-3">
           <h2 className="text-lg font-medium text-gray-800 dark:text-white">
-            CareGiver Request
+            CareGiver Details
           </h2>
           <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
             {requests.length}
@@ -150,7 +185,13 @@ const CareGiverReq = () => {
                         scope="col"
                         className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                       >
-                        Email address
+                        Expertise
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                      >
+                        Area
                       </th>
                       <th scope="col" className="relative py-3.5 px-4">
                         <span className="sr-only">Edit</span>
@@ -174,7 +215,7 @@ const CareGiverReq = () => {
                                     {req.careGiverName}
                                   </h2>
                                   <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
-                                    {req.expertise}
+                                    {req.careGiverEmail}
                                   </p>
                                 </div>
                               </div>
@@ -189,21 +230,28 @@ const CareGiverReq = () => {
                             </div>
                           </td>
                           <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                            Pending
+                            {req.status === "verified" ? (
+                              <span className="text-green-500 font-medium">
+                                {req.role}
+                              </span>
+                            ) : (
+                              "None"
+                            )}
                           </td>
                           <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                            {req.careGiverEmail}
+                            {req.expertise}
+                          </td>
+                          <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                            <div>
+                              <h2 className="font-medium text-gray-800 dark:text-white ">
+                                {req.city}
+                              </h2>
+                              <p className="text-sm font-normal text-blue-600 dark:text-gray-400">
+                                {req.subArea}
+                              </p>
+                            </div>
                           </td>
                           <td className="px-4 py-4 text-sm whitespace-nowrap">
-                            {/* <div className="flex items-center gap-x-2">
-                              <p className="px-3 py-1 text-xs text-green-500 rounded-full dark:bg-gray-800 bg-green-100/60">
-                                Accept
-                              </p>
-                              
-                              <p className="px-3 py-1 text-xs text-pink-500 rounded-full dark:bg-gray-800 bg-pink-100/60">
-                                Reject
-                              </p>
-                            </div> */}
                             <td>
                               {req.status === "pending" && (
                                 <>
@@ -231,7 +279,10 @@ const CareGiverReq = () => {
                           </td>
                           <td className="px-4 py-4 text-sm whitespace-nowrap">
                             <div className="flex items-center gap-x-6">
-                              <button className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
+                              <button
+                                className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none"
+                                onClick={() => handleDelete(req._id)} // Adding the click handler
+                              >
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   fill="none"
@@ -247,6 +298,7 @@ const CareGiverReq = () => {
                                   />
                                 </svg>
                               </button>
+
                               <button className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"

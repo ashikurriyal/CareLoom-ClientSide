@@ -2,13 +2,22 @@ import { useForm } from "react-hook-form";
 import useUser from "../../../Hooks/useUser";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 const CareGiverApplyForm = () => {
   const collectUser = useUser();
   const axiosSecure = useAxiosSecure();
-    // console.log(collectUser);
+  const [selectedCity, setSelectedCity] = useState(""); // State to store selected city
 
   const { register, handleSubmit } = useForm();
+
+  const cities = {
+    Dhaka: ["Uttara", "Mirpur", "Agargaon", "Banani", "Gulshan", "Shahjadpur", "Mohakhali", "Bashundhara", "Rampura", "Badda", "Khilgaon"],
+    Chittagong: ["Pahartali", "Agrabad", "Chandgaon", "Patenga", "Nasirabad"],
+    Rajshahi: ["Motihar", "Uposhohor", "Talaimari", "Kazla", "Shaheb Bazar"],
+    Khulna: ["Boyra", "Sonadanga", "Daulatpur", "Khalishpur", "Shibbari"],
+  };
+
   const onSubmit = async (data) => {
     try {
       const applyCareGiver = {
@@ -17,13 +26,14 @@ const CareGiverApplyForm = () => {
         role: "CareGiver",
         status: "pending",
         expertise: data.expertise,
+        city: data.city,
+        subArea: data.subArea,
         uid: collectUser?._id,
       };
+      console.log(applyCareGiver)
 
-      const result = await axiosSecure.post(
-        "/careGiverRequest",
-        applyCareGiver
-      );
+      const result = await axiosSecure.post("/careGiverRequest", applyCareGiver);
+
       if (result.data.insertedId) {
         Swal.fire({
           icon: "success",
@@ -32,14 +42,11 @@ const CareGiverApplyForm = () => {
           timer: 1500,
         });
       }
-    //   console.log(applyCareGiver);
     } catch (error) {
-      console.error(
-        "Error uploading image:",
-        error.response ? error.response.data : error.message
-      );
+      console.error("Error uploading data:", error.response ? error.response.data : error.message);
     }
   };
+
   return (
     <div>
       <section className="bg-white dark:bg-gray-900">
@@ -53,6 +60,8 @@ const CareGiverApplyForm = () => {
                 Apply as CareGiver
               </a>
             </div>
+
+            {/* Caregiver name */}
             <div className="relative flex items-center mt-8">
               <span className="absolute">
                 <svg
@@ -79,6 +88,8 @@ const CareGiverApplyForm = () => {
                 disabled
               />
             </div>
+
+            {/* Profile photo */}
             <label
               htmlFor="dropzone-file"
               className="flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-lg cursor-pointer dark:border-gray-600 dark:bg-gray-900"
@@ -98,13 +109,10 @@ const CareGiverApplyForm = () => {
                 />
               </svg>
               <h2 className="mx-3 text-gray-400">Profile Photo</h2>
-              <input
-                {...register("profilePhoto")}
-                type="text"
-                id="profilePhoto"
-                className="hidden"
-              />
+              <input {...register("profilePhoto")} type="file" id="profilePhoto" className="hidden" />
             </label>
+
+            {/* Caregiver email */}
             <div className="relative flex items-center mt-6">
               <span className="absolute">
                 <svg
@@ -131,55 +139,8 @@ const CareGiverApplyForm = () => {
                 disabled
               />
             </div>
-            <div className="relative flex items-center mt-4">
-              <span className="absolute">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                  />
-                </svg>
-              </span>
-              <input
-                {...register("role")}
-                type="text"
-                id="role"
-                className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                placeholder="CareGiver"
-                disabled
-              />
-            </div>
-            {/* <div className="relative flex items-center mt-4">
-              <span className="absolute">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                  />
-                </svg>
-              </span>
-              <input
-                {...register("expertise")} type="text" id="expertise"
-                className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                placeholder="Expertise"
-              />
-            </div> */}
+
+            {/* Expertise */}
             <div className="relative flex items-center mt-4">
               <span className="absolute">
                 <svg
@@ -210,9 +171,79 @@ const CareGiverApplyForm = () => {
               </select>
             </div>
 
+            {/* City selection */}
+            <div className="relative flex items-center mt-4">
+              <span className="absolute">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 12v.01M3 12h.01M21 12h-.01M12 3v.01M12 21v-.01"
+                  />
+                </svg>
+              </span>
+              <select
+                {...register("city")}
+                id="city"
+                className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                onChange={(e) => setSelectedCity(e.target.value)} // Update selected city
+              >
+                <option value="">Select City</option>
+                {Object.keys(cities).map((city) => (
+                  <option key={city} value={city}>
+                    {city}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Sub-area selection */}
+            {selectedCity && (
+              <div className="relative flex items-center mt-4">
+                <span className="absolute">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M3 12h.01M12 3v.01M12 21v-.01M21 12h-.01"
+                    />
+                  </svg>
+                </span>
+                <select
+                  {...register("subArea")}
+                  id="subArea"
+                  className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                >
+                  <option value="">Select Sub-Area</option>
+                  {cities[selectedCity].map((subArea) => (
+                    <option key={subArea} value={subArea}>
+                      {subArea}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+
             <div className="mt-6">
-              <button className="w-full px-6 py-3 text-xl font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                Apply
+              <button
+                type="submit"
+                className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-primary-cyan rounded-lg hover:bg-primary-cyan-light focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+              >
+                Apply Now
               </button>
             </div>
           </form>
