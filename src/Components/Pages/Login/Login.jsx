@@ -27,10 +27,14 @@ const Login = () => {
           icon: "success",
         });
         const res = await axiosPublic.get(`/collectUser/${email}`);
+        const result = await axiosPublic.get(`/verifiedCareGiver/${email}`);
         const data = await res?.data;
-        console.log(data);
+        console.log(result.data);
         if(data?.role === "admin"){
             return navigate('/adminDashboard')
+        }
+        if(result.data?.role === 'CareGiver'){
+          return navigate('/careGiverDashboard')
         }
         navigate(location?.state ? location.state : "/");
 

@@ -14,7 +14,7 @@ const useUser = () => {
     },
   });
 
-  return collectUser;
+  return {collectUser};
 };
 
 export default useUser;

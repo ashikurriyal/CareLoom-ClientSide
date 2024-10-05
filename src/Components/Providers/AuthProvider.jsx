@@ -57,7 +57,7 @@ const AuthProvider = ({children}) => {
     },[])
 
     const authInfo = {
-        user, loading , createUser, signIn, logOut, signInWithGoogle, updateCurrentProfile
+        user, loading , createUser, signIn, logOut, signInWithGoogle, updateCurrentProfile, setLoading
     }
 
     

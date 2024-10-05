@@ -1,4 +1,4 @@
-import {createBrowserRouter} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../Layout/MainLayout";
 import Home from "../Pages/Home/Home";
 import ErrorPage from "../Pages/Shared/ErrorPage/ErrorPage";
@@ -13,8 +13,10 @@ import AdminWelcome from "../Pages/Admin/AdminWelcome";
 import CareGiverReq from "../Pages/Admin/CareGiverReq";
 import ProfileDetails from "../Pages/Shared/ProfileDetails/ProfileDetails";
 import AllUsers from "../Pages/Admin/AllUsers";
-
-
+import ApplyCareForm from "../Pages/Home/ApplyForCare/ApplyCareForm";
+import CareGiverPageLayout from "../Layout/CareGiverPageLayout";
+import CareRequest from "../Pages/CareGiver/CareRequest";
+import MyCareRequest from "../Pages/Shared/MyCareRequest/MyCareRequest";
 
 const router = createBrowserRouter([
   {
@@ -22,57 +24,80 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage></ErrorPage>,
     element: <MainLayout></MainLayout>,
     children: [
-        {
-            path: '/',
-            element: <Home></Home>
-        }, 
-        {
-            path: '/login',
-            element: <Login></Login>
-        }, 
-        {
-            path: '/register',
-            element: <Register></Register>
-        },
-        {
-          path: '/services',
-          element: <ServicesPage></ServicesPage>
-        },
-        {
-          path: '/contactus',
-          element: <ContactUs></ContactUs>
-        },
-        {
-          path: '/careGiverApplyForm',
-          element: <CareGiverApplyForm></CareGiverApplyForm>
-        },
-        {
-          path : '/profileDetails',
-          element: <ProfileDetails></ProfileDetails>
-        }
-    ]
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "/services",
+        element: <ServicesPage></ServicesPage>,
+      },
+      {
+        path: "/contactus",
+        element: <ContactUs></ContactUs>,
+      },
+      {
+        path: "/careGiverApplyForm",
+        element: <CareGiverApplyForm></CareGiverApplyForm>,
+      },
+      {
+        path: "/profileDetails",
+        element: <ProfileDetails></ProfileDetails>,
+      },
+      {
+        path: "/applyCareForm",
+        element: <ApplyCareForm></ApplyCareForm>,
+      },
+      {
+        path: '/myCareRequest',
+        element: <MyCareRequest></MyCareRequest>
+      }
+    ],
   },
 
   {
-    path: '/adminDashboard',
-    
+    path: "/adminDashboard",
+
     element: <AdminPageLayout></AdminPageLayout>,
     children: [
       {
-        path: '/adminDashboard/welcome',
-        element: <AdminRoute><AdminWelcome></AdminWelcome></AdminRoute>,
+        path: "/adminDashboard/welcome",
+        element: (
+          <AdminRoute>
+            <AdminWelcome></AdminWelcome>
+          </AdminRoute>
+        ),
       },
       {
-        path: '/adminDashboard/careGiverReq', 
+        path: "/adminDashboard/careGiverReq",
         element: <CareGiverReq></CareGiverReq>,
       },
       {
-        path: '/adminDashboard/users',
-        element: <AllUsers></AllUsers>
-      }
-      
+        path: "/adminDashboard/users",
+        element: <AllUsers></AllUsers>,
+      },
+    ],
+  },
+
+  {
+    path: "/careGiverDashboard",
+
+    element: <CareGiverPageLayout></CareGiverPageLayout>,
+    children: [
+      {
+        path: "/careGiverDashboard/careRequest",
+        element: <CareRequest></CareRequest>,
+      },
     ]
-  }
+  },
 ]);
 
 export default router;

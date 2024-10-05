@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import useUser from "../../Hooks/useUser";
 
-const AdminDashboard = () => {
-  const {collectUser} = useUser();
-  // console.log(collectUser);
+const CareGiverDashboard = () => {
+    const {collectUser} = useUser()
   return (
     <div>
       <aside className="flex flex-col min-h-screen px-5 py-3 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
@@ -13,7 +12,7 @@ const AdminDashboard = () => {
           </p>
           <p>
             <span className="text-lg font-semibold text-gray-700 dark:text-gray-200">
-              Admin
+              CareGiver
             </span>
           </p>
         </p>
@@ -56,9 +55,9 @@ const AdminDashboard = () => {
                   d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
                 />
               </svg>
-              <Link to="/adminDashboard/welcome">
+              {/* <Link to="/adminDashboard/welcome">
                 <span className="mx-2 text-sm font-medium">Home</span>
-              </Link>
+              </Link> */}
             </div>
             {/* <a
               className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
@@ -95,10 +94,10 @@ const AdminDashboard = () => {
                   d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"
                 />
               </svg>
-              <Link to="/adminDashboard/careGiverReq">
+              <Link to="/careGiverDashboard/careRequest">
                 <button>
                   <span className="mx-2 text-sm font-medium">
-                    CareGiver Details
+                    Care Request
                   </span>
                 </button>
               </Link>
@@ -249,4 +248,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard;
+export default CareGiverDashboard;
