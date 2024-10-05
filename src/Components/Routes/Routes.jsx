@@ -7,11 +7,12 @@ import Register from "../Pages/Register/Register";
 import ServicesPage from "../Pages/ServicesPage/ServicesPage";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import AdminPageLayout from "../Layout/AdminPageLayout";
-// import AdminWelcome from "../Pages/Admin/AdminWelcome";
 import CareGiverApplyForm from "../Pages/Home/CaregiverApply/CareGiverApplyForm";
-// import CareGiverReq from "../Pages/Admin/CareGiverReq";
-// import AdminRoute from "./AdminRoute";
+import AdminRoute from "./AdminRoute";
+import AdminWelcome from "../Pages/Admin/AdminWelcome";
 import CareGiverReq from "../Pages/Admin/CareGiverReq";
+import ProfileDetails from "../Pages/Shared/ProfileDetails/ProfileDetails";
+import AllUsers from "../Pages/Admin/AllUsers";
 
 
 
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
         {
           path: '/careGiverApplyForm',
           element: <CareGiverApplyForm></CareGiverApplyForm>
+        },
+        {
+          path : '/profileDetails',
+          element: <ProfileDetails></ProfileDetails>
         }
     ]
   },
@@ -54,9 +59,17 @@ const router = createBrowserRouter([
     element: <AdminPageLayout></AdminPageLayout>,
     children: [
       {
-        path: '/adminDashboard', 
+        path: '/adminDashboard/welcome',
+        element: <AdminRoute><AdminWelcome></AdminWelcome></AdminRoute>,
+      },
+      {
+        path: '/adminDashboard/careGiverReq', 
         element: <CareGiverReq></CareGiverReq>,
         // element: <AdminRoute><AdminWelcome></AdminWelcome></AdminRoute>,
+      },
+      {
+        path: '/adminDashboard/users',
+        element: <AllUsers></AllUsers>
       }
       
     ]

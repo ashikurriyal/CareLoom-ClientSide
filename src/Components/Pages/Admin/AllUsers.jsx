@@ -1,76 +1,23 @@
+// import React from 'react';
+
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import Swal from "sweetalert2";
 
-const CareGiverReq = () => {
-  const axiosSecure = useAxiosSecure();
-  const { data: requests = [], refetch } = useQuery({
+const AllUsers = () => {
+    const axiosSecure = useAxiosSecure();
+  const { data: requests = [] } = useQuery({
     queryKey: ["requests"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/allCareGiverApplyReq");
+      const res = await axiosSecure.get("/users");
       return res.data;
     },
   });
-
-  const handleVerify = (item) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "Verify this CareGiver!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, Verify This CareGiver",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axiosSecure
-          .patch(`/users/${item._id}`, { status: "verified" }) // Send the status in the request body
-          .then((res) => {
-            if (res.data.modifiedCount > 0) {
-              Swal.fire({
-                title: "Successful",
-                text: "CareGiver Verified Successfully",
-                icon: "success",
-              });
-              refetch();
-            }
-          });
-      }
-    });
-  };
-
-      //reject property
-      const handleReject = item => {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "Reject this CareGiver!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Reject This CareGiver"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                axiosSecure.patch(`/users/${item._id}`, { status: 'rejected' }) // Send the status in the request body
-                    .then(res => {
-                        if (res.data.modifiedCount > 0) {
-                            Swal.fire({
-                                title: "Successful",
-                                text: "CareGiver is Rejected",
-                                icon: "success"
-                            });
-                            refetch();
-                        }
-                    });
-            }
-        });
-    }
   return (
     <div>
       <section className="container px-4 mx-auto">
         <div className="flex items-center gap-x-3">
           <h2 className="text-lg font-medium text-gray-800 dark:text-white">
-            CareGiver Request
+            All Users
           </h2>
           <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
             {requests.length}
@@ -88,6 +35,10 @@ const CareGiverReq = () => {
                         className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                       >
                         <div className="flex items-center gap-x-3">
+                          {/* <input
+                            type="checkbox"
+                            className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
+                          /> */}
                           <span>Name</span>
                         </div>
                       </th>
@@ -152,6 +103,12 @@ const CareGiverReq = () => {
                       >
                         Email address
                       </th>
+                      {/* <th
+                        scope="col"
+                        className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                      >
+                        Teams
+                      </th> */}
                       <th scope="col" className="relative py-3.5 px-4">
                         <span className="sr-only">Edit</span>
                       </th>
@@ -163,6 +120,10 @@ const CareGiverReq = () => {
                         <tr>
                           <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                             <div className="inline-flex items-center gap-x-3">
+                              {/* <input
+                                type="checkbox"
+                                className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
+                              /> */}
                               <div className="flex items-center gap-x-2">
                                 <img
                                   className="object-cover w-10 h-10 rounded-full"
@@ -171,10 +132,10 @@ const CareGiverReq = () => {
                                 />
                                 <div>
                                   <h2 className="font-medium text-gray-800 dark:text-white ">
-                                    {req.careGiverName}
+                                    {req.name}
                                   </h2>
                                   <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
-                                    {req.expertise}
+                                    {req.email}
                                   </p>
                                 </div>
                               </div>
@@ -192,42 +153,18 @@ const CareGiverReq = () => {
                             Pending
                           </td>
                           <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                            {req.careGiverEmail}
+                            {req.email}
                           </td>
                           <td className="px-4 py-4 text-sm whitespace-nowrap">
-                            {/* <div className="flex items-center gap-x-2">
+                            <div className="flex items-center gap-x-2">
                               <p className="px-3 py-1 text-xs text-green-500 rounded-full dark:bg-gray-800 bg-green-100/60">
                                 Accept
                               </p>
-                              
+
                               <p className="px-3 py-1 text-xs text-pink-500 rounded-full dark:bg-gray-800 bg-pink-100/60">
                                 Reject
                               </p>
-                            </div> */}
-                            <td>
-                              {req.status === "pending" && (
-                                <>
-                                  <button
-                                    className="px-3 py-1 text-xs text-green-500 rounded-full dark:bg-gray-800 bg-green-100/60"
-                                    onClick={() => handleVerify(req)}
-                                  >
-                                    Verify
-                                  </button>
-                                  <button
-                                    className="px-3 py-1 text-xs text-pink-500 rounded-full dark:bg-gray-800 bg-pink-100/60"
-                                    onClick={() => handleReject(req)}
-                                  >
-                                    Reject
-                                  </button>
-                                </>
-                              )}
-                              {req.status === "verified" && (
-                                <span className="text-green-500">Verified</span>
-                              )}
-                              {req.status === "rejected" && (
-                                <span className="text-red-500">Rejected</span>
-                              )}
-                            </td>
+                            </div>
                           </td>
                           <td className="px-4 py-4 text-sm whitespace-nowrap">
                             <div className="flex items-center gap-x-6">
@@ -367,4 +304,4 @@ const CareGiverReq = () => {
   );
 };
 
-export default CareGiverReq;
+export default AllUsers;
