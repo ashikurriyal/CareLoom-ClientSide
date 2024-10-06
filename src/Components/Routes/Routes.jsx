@@ -43,7 +43,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/contactus",
-        element: <ContactUs></ContactUs>,
+        element: <PrivateRoutes><ContactUs></ContactUs></PrivateRoutes>,
       },
       {
         path: "/careGiverApplyForm",

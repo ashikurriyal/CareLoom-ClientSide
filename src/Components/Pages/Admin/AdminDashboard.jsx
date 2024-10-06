@@ -1,9 +1,21 @@
 import { Link } from "react-router-dom";
 import useUser from "../../Hooks/useUser";
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const AdminDashboard = () => {
   const {collectUser} = useUser();
+
+  const {user, logOut} = useContext(AuthContext)
+  console.log(user)
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => console.log("user logged out successfully"))
+      .catch((error) => console.error(error.message));
+  };
   // console.log(collectUser);
+  
   return (
     <div>
       <aside className="flex flex-col min-h-screen px-5 py-3 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
@@ -222,7 +234,7 @@ const AdminDashboard = () => {
                   {collectUser.name}
                 </span>
               </a>
-              <a
+              <a onClick={handleLogOut}
                 href="#"
                 className="text-gray-500 transition-colors duration-200 rotate-180 dark:text-gray-400 rtl:rotate-0 hover:text-blue-500 dark:hover:text-blue-400"
               >
