@@ -17,6 +17,7 @@ import ApplyCareForm from "../Pages/Home/ApplyForCare/ApplyCareForm";
 import CareGiverPageLayout from "../Layout/CareGiverPageLayout";
 import CareRequest from "../Pages/CareGiver/CareRequest";
 import MyCareRequest from "../Pages/Shared/MyCareRequest/MyCareRequest";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/services",
-        element: <ServicesPage></ServicesPage>,
+        element: <PrivateRoutes><ServicesPage></ServicesPage></PrivateRoutes>,
       },
       {
         path: "/contactus",
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/careGiverApplyForm",
-        element: <CareGiverApplyForm></CareGiverApplyForm>,
+        element: <PrivateRoutes><CareGiverApplyForm></CareGiverApplyForm></PrivateRoutes>,
       },
       {
         path: "/profileDetails",
@@ -54,11 +55,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/applyCareForm",
-        element: <ApplyCareForm></ApplyCareForm>,
+        element: <PrivateRoutes><ApplyCareForm></ApplyCareForm></PrivateRoutes>,
       },
       {
         path: '/myCareRequest',
-        element: <MyCareRequest></MyCareRequest>
+        element: <PrivateRoutes><MyCareRequest></MyCareRequest></PrivateRoutes>
       }
     ],
   },

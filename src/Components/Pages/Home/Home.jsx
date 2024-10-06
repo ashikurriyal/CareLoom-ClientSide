@@ -7,6 +7,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useEffect } from "react";
 import CaregiverApply from "./CaregiverApply/CaregiverApply";
 import ApplyForCare from "./ApplyForCare/ApplyForCare";
+import Banner from "./Banner/Banner";
 
 const Home = () => {
   const { user } = useAuth();
@@ -26,8 +27,9 @@ const Home = () => {
 
   return (
     <div>
-      <AboutusSection></AboutusSection>
+      <Banner></Banner>
       <ApplyForCare></ApplyForCare>
+      <AboutusSection></AboutusSection>
       <CaregiverApply></CaregiverApply>
       <ServiecesSection></ServiecesSection>
       <TeamMembers></TeamMembers>
