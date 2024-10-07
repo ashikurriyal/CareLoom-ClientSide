@@ -8,7 +8,7 @@ const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
   const collectUser = useUser();
-  console.log(collectUser);
+  // console.log(collectUser);
 
   const location = useLocation();
 

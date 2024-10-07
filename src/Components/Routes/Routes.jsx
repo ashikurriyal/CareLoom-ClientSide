@@ -55,11 +55,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/applyCareForm",
-        element: <PrivateRoutes><ApplyCareForm></ApplyCareForm></PrivateRoutes>,
+        element: <ApplyCareForm></ApplyCareForm>
       },
       {
         path: '/myCareRequest',
-        element: <PrivateRoutes><MyCareRequest></MyCareRequest></PrivateRoutes>
+        element: <MyCareRequest></MyCareRequest>
       }
     ],
   },

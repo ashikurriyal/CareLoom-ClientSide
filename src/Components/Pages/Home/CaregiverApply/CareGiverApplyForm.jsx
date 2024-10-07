@@ -31,6 +31,7 @@ const CareGiverApplyForm = () => {
         uid: collectUser?._id,
       };
       console.log(applyCareGiver)
+      console.log(collectUser.name)
 
       const result = await axiosSecure.post("/careGiverRequest", applyCareGiver);
 
